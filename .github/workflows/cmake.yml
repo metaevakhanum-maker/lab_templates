@@ -1,0 +1,22 @@
+name: CMake Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Clean old builds
+      run: rm -rf build build_* CMakeCache.txt CMakeFiles
+      
+    - name: Configure CMake
+      run: cmake -B build -DCMAKE_BUILD_TYPE=Debug
+      
+    - name: Build
+      run: cmake --build build
