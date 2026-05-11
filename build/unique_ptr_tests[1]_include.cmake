@@ -1,0 +1,5 @@
+if(EXISTS "/home/Khanum/lab_templates/build/unique_ptr_tests[1]_tests.cmake")
+  include("/home/Khanum/lab_templates/build/unique_ptr_tests[1]_tests.cmake")
+else()
+  add_test(unique_ptr_tests_NOT_BUILT unique_ptr_tests_NOT_BUILT)
+endif()
