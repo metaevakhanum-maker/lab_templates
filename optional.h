@@ -128,7 +128,7 @@ Optional<T>& Optional<T>::operator=(Optional&& other) {
 template <typename T>
 Optional<T>& Optional<T>::operator=(const T& value) {
     if (has_value_) {
-        this->value() = value;  
+        this->value() = value;  // Исправлено: this->value()
     } else {
         new (storage_) T(value);
         has_value_ = true;
@@ -140,7 +140,7 @@ Optional<T>& Optional<T>::operator=(const T& value) {
 template <typename T>
 Optional<T>& Optional<T>::operator=(T&& value) {
     if (has_value_) {
-        this->value() = std::move(value);  
+        this->value() = std::move(value);  // Исправлено: this->value()
     } else {
         new (storage_) T(std::move(value));
         has_value_ = true;
