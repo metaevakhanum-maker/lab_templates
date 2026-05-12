@@ -78,8 +78,8 @@ Array<T>::Array(size_t size, const T& value)
 
 // Конструктор копирования
 template <typename T>
-Array<T>::Array(const Array& other) 
-    : data_(new T[other.size_]), size_(other.size_) {
+Array<T>::Array(const Array& other)
+: data_(new T[other.size_]), size_(other.size_) {
     for (size_t i = 0; i < size_; ++i) {
         data_[i] = other.data_[i];
     }
@@ -87,7 +87,7 @@ Array<T>::Array(const Array& other)
 
 // Конструктор перемещения
 template <typename T>
-Array<T>::Array(Array&& other) noexcept
+Array<T>::Array(Array&& other)
     : data_(other.data_), size_(other.size_) {
     other.data_ = nullptr;
     other.size_ = 0;
@@ -97,7 +97,6 @@ Array<T>::Array(Array&& other) noexcept
 template <typename T>
 Array<T>& Array<T>::operator=(const Array& other) {
     if (this != &other) {
-        // Создаём временную копию (идиома copy-and-swap)
         Array<T> temp(other);
         swap(temp);
     }
@@ -106,7 +105,7 @@ Array<T>& Array<T>::operator=(const Array& other) {
 
 // Оператор присваивания перемещением
 template <typename T>
-Array<T>& Array<T>::operator=(Array&& other) noexcept {
+Array<T>& Array<T>::operator=(Array&& other) {
     if (this != &other) {
         delete[] data_;
         data_ = other.data_;
